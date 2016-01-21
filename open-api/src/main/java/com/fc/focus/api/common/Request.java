@@ -1,6 +1,6 @@
-package com.fc.focus.selenium.api.comman;
+package com.fc.focus.api.common;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Eason on 15/12/5.
@@ -11,11 +11,9 @@ public interface Request {
      * have one json per case.
      * @return
      */
-    String toJSON();
+    String getParamJson();
 
     String getURL();
 
     String getEndpoint();
-
-
 }
