@@ -64,6 +64,11 @@ public class HttpUtils {
         public byte[] getResponseBody() {
             return responseBody;
         }
+
+        public String getResponseBodyString() {
+            return new String(responseBody);
+        }
+
     }
 
 }

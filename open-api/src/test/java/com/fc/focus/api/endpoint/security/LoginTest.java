@@ -1,6 +1,7 @@
 package com.fc.focus.api.endpoint.security;
 
 import com.alibaba.fastjson.JSON;
+import com.fc.focus.api.common.TestConstance;
 import com.fc.focus.api.http.HttpUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -15,13 +16,15 @@ import java.util.Map;
  */
 public class LoginTest {
 
-    private static final String URL = "";
+    private static final String URL = TestConstance.HOST + "";
 
     @DataProvider
     public Object[][] date() {
         return new Object[][] {
-                { "15000000000", "12345678a", true},
+                { "15000000000", "12345678a", false},
                 { "15000000001", "12345678a", false},
+                { "1500000", "12345678a", false},
+                { "sdfafd", "12345", false},
         };
     }
 
@@ -45,4 +48,6 @@ public class LoginTest {
             throw new RuntimeException();
         }
     }
+
+
 }
