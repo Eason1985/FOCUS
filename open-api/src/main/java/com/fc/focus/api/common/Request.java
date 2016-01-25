@@ -16,4 +16,7 @@ public interface Request {
     String getURL();
 
     String getEndpoint();
+
+    Map<String, String> getHeader();
+
 }

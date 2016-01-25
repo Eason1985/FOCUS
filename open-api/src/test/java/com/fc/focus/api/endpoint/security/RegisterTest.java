@@ -48,7 +48,7 @@ public class RegisterTest {
 
         String json = JSON.toJSONString(map);
         try {
-            HttpUtils.HttpResult httpResult = HttpUtils.post(URL, json);
+            HttpUtils.HttpResult httpResult = HttpUtils.post(URL, json, new HashMap<String, String>());
 
             if (!assert0) {
                 Assert.assertEquals(httpResult.getStatusCode(), 400);
@@ -69,7 +69,7 @@ public class RegisterTest {
 
         String json = JSON.toJSONString(map);
         try {
-            HttpUtils.HttpResult httpResult = HttpUtils.post(URL, json);
+            HttpUtils.HttpResult httpResult = HttpUtils.post(URL, json, new HashMap<String, String>());
 
             if (!assert0) {
                 Assert.assertEquals(httpResult.getStatusCode(), 400);
