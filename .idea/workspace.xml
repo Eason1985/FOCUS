@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d886d5e-4994-4be1-b874-d7480d4856f8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest.java" afterPath="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/test/MainTest.java" afterPath="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/test/MainTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/RegisterTest.java" afterPath="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/RegisterTest.java" />
     </list>
     <ignored path="functionTest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,9 +44,10 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3781#3782#0" expanded="true" />
-                <element signature="e#3836#3837#0" expanded="true" />
+                <element signature="e#3605#3606#0" expanded="false" />
+                <element signature="e#3646#3647#0" expanded="false" />
+                <element signature="e#3689#3690#0" expanded="false" />
+                <element signature="e#3732#3733#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -57,15 +58,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#841#842#0" expanded="true" />
-                <element signature="e#875#876#0" expanded="true" />
-                <element signature="e#1424#1425#0" expanded="true" />
-                <element signature="e#1507#1508#0" expanded="true" />
-                <element signature="e#1546#1547#0" expanded="true" />
-                <element signature="e#1581#1582#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,65 +67,20 @@
         <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/test/MainTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Header.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar!/org/apache/commons/httpclient/Header.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="52" column="11" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#4389#0" expanded="false" />
-                <element signature="e#2332#2333#0" expanded="false" />
-                <element signature="e#2366#2367#0" expanded="false" />
-                <element signature="e#3321#3322#0" expanded="false" />
-                <element signature="e#3360#3361#0" expanded="false" />
-                <element signature="e#4039#4040#0" expanded="false" />
-                <element signature="e#4101#4102#0" expanded="false" />
-                <element signature="e#4346#4347#0" expanded="false" />
-                <element signature="e#4384#4385#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NameValuePair.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar!/org/apache/commons/httpclient/NameValuePair.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#4244#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#2144#2145#0" expanded="false" />
-                <element signature="e#2177#2178#0" expanded="false" />
-                <element signature="e#2815#2816#0" expanded="false" />
-                <element signature="e#2847#2848#0" expanded="false" />
-                <element signature="e#2991#2992#0" expanded="false" />
-                <element signature="e#3018#3019#0" expanded="false" />
-                <element signature="e#3141#3142#0" expanded="false" />
-                <element signature="e#3175#3176#0" expanded="false" />
-                <element signature="e#3311#3312#0" expanded="false" />
-                <element signature="e#3339#3340#0" expanded="false" />
-                <element signature="e#3557#3558#0" expanded="false" />
-                <element signature="e#3622#3623#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58536583">
-              <caret line="43" column="67" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpRemoteFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/common/HttpRemoteFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,7 +99,29 @@
         <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/RegisterTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+              <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2933#2934#0" expanded="true" />
+                <element signature="e#2972#2973#0" expanded="true" />
+                <element signature="e#3159#3160#0" expanded="true" />
+                <element signature="e#3194#3195#0" expanded="true" />
+                <element signature="e#3233#3234#0" expanded="true" />
+                <element signature="e#3268#3269#0" expanded="true" />
+                <element signature="e#3318#3319#0" expanded="true" />
+                <element signature="e#3355#3356#0" expanded="true" />
+                <element signature="e#3414#3415#0" expanded="true" />
+                <element signature="e#3465#3466#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.3164983">
+              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -164,9 +134,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="TestNG Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -209,10 +179,12 @@
         <option value="$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/common/Request.java" />
         <option value="$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/http/HttpUtils.java" />
         <option value="$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/endpoint/security/User.java" />
-        <option value="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/RegisterTest.java" />
-        <option value="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/test/MainTest.java" />
         <option value="$PROJECT_DIR$/open-api/src/test/resources/testng.xml" />
         <option value="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest.java" />
+        <option value="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/RegisterTest.java" />
+        <option value="$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/common/RemoteKVPair.java" />
+        <option value="$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/common/HttpRemoteFactory.java" />
+        <option value="$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/test/MainTest.java" />
       </list>
     </option>
   </component>
@@ -494,6 +466,10 @@
               <option name="myItemId" value="focus" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -764,6 +740,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1249,16 +1229,16 @@
       <workItem from="1453176261699" duration="13184000" />
       <workItem from="1453720316847" duration="1702000" />
       <workItem from="1453775530646" duration="41000" />
-      <workItem from="1453775585773" duration="743000" />
+      <workItem from="1453775585773" duration="5106000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22328000" />
+    <option name="totallyTimeSpent" value="26691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="38" y="23" width="1402" height="877" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1277,7 +1257,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2757353" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4420382" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20764332" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16626506" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1310,12 +1290,6 @@
           <line>60</line>
           <properties />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest.java</url>
-          <line>31</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="2" />
     </breakpoint-manager>
@@ -1326,21 +1300,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/common/ResoucesHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.1.2/httpclient-4.1.2.jar!/org/apache/http/client/HttpClient.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1593,6 +1552,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1633,9 +1595,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3781#3782#0" expanded="true" />
-            <element signature="e#3836#3837#0" expanded="true" />
+            <element signature="e#3605#3606#0" expanded="false" />
+            <element signature="e#3646#3647#0" expanded="false" />
+            <element signature="e#3689#3690#0" expanded="false" />
+            <element signature="e#3732#3733#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1644,64 +1607,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#841#842#0" expanded="true" />
-            <element signature="e#875#876#0" expanded="true" />
-            <element signature="e#1424#1425#0" expanded="true" />
-            <element signature="e#1507#1508#0" expanded="true" />
-            <element signature="e#1546#1547#0" expanded="true" />
-            <element signature="e#1581#1582#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/test/MainTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar!/org/apache/commons/httpclient/Header.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="11" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#4389#0" expanded="false" />
-            <element signature="e#2332#2333#0" expanded="false" />
-            <element signature="e#2366#2367#0" expanded="false" />
-            <element signature="e#3321#3322#0" expanded="false" />
-            <element signature="e#3360#3361#0" expanded="false" />
-            <element signature="e#4039#4040#0" expanded="false" />
-            <element signature="e#4101#4102#0" expanded="false" />
-            <element signature="e#4346#4347#0" expanded="false" />
-            <element signature="e#4384#4385#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar!/org/apache/commons/httpclient/NameValuePair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#4244#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2144#2145#0" expanded="false" />
-            <element signature="e#2177#2178#0" expanded="false" />
-            <element signature="e#2815#2816#0" expanded="false" />
-            <element signature="e#2847#2848#0" expanded="false" />
-            <element signature="e#2991#2992#0" expanded="false" />
-            <element signature="e#3018#3019#0" expanded="false" />
-            <element signature="e#3141#3142#0" expanded="false" />
-            <element signature="e#3175#3176#0" expanded="false" />
-            <element signature="e#3311#3312#0" expanded="false" />
-            <element signature="e#3339#3340#0" expanded="false" />
-            <element signature="e#3557#3558#0" expanded="false" />
-            <element signature="e#3622#3623#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1713,16 +1619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/RegisterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/open-api/src/test/resources/testng.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1731,10 +1627,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar!/org/apache/commons/httpclient/NameValuePair.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.114634">
+          <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar!/org/apache/commons/httpclient/Header.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08292683">
+          <caret line="52" column="11" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="11" />
+          <folding>
+            <element signature="e#2118#2119#0" expanded="true" />
+            <element signature="e#2150#2151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/open-api/src/main/java/com/fc/focus/api/common/HttpRemoteFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/test/MainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/RegisterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2933#2934#0" expanded="true" />
+            <element signature="e#2972#2973#0" expanded="true" />
+            <element signature="e#3159#3160#0" expanded="true" />
+            <element signature="e#3194#3195#0" expanded="true" />
+            <element signature="e#3233#3234#0" expanded="true" />
+            <element signature="e#3268#3269#0" expanded="true" />
+            <element signature="e#3318#3319#0" expanded="true" />
+            <element signature="e#3355#3356#0" expanded="true" />
+            <element signature="e#3414#3415#0" expanded="true" />
+            <element signature="e#3465#3466#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58536583">
-          <caret line="43" column="67" selection-start-line="43" selection-start-column="67" selection-end-line="43" selection-end-column="67" />
+        <state vertical-scroll-proportion="1.3164983">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

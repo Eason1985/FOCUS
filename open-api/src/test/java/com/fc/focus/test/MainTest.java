@@ -1,10 +1,12 @@
 package com.fc.focus.test;
 
+import com.fc.focus.api.common.HttpRemoteFactory;
 import com.fc.focus.api.common.Request;
 import com.fc.focus.api.common.Response;
 import com.fc.focus.api.endpoint.security.User;
 import com.fc.focus.api.http.HttpUtils;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -14,21 +16,22 @@ import java.io.IOException;
  */
 public class MainTest {
 
+    @DataProvider
+    public Object[][] dataProvider() throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+        return initTestCase();
+    }
 
     @Test
-    public void doTest() {
-//        try {
-//            Response result = HttpUtils.invoke(request, response);
-//            Assert.assertEquals(result.assert0(), true);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+    public void doTest(Request request, Class<Response> responseClass) throws IllegalAccessException, IOException, InstantiationException {
+        Response response1 = HttpUtils.invoke(request, responseClass);
+        Assert.assertEquals(response1.assert0(), true);
+    }
 
-        try {
-            User user = new User("18616021563", "123123123123");
-            System.out.println(user.getAccessToken());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private Object[][] initTestCase() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+        Class<?> factory = Class.forName("");
+        HttpRemoteFactory instance = (HttpRemoteFactory) factory.newInstance();
+        Object[][] testCase = new Object[instance.make().size()][2];
+
+        return testCase;
     }
 }

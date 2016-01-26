@@ -1,6 +1,7 @@
 package com.fc.focus.api.endpoint.security;
 
 import com.alibaba.fastjson.JSON;
+import com.fc.focus.api.common.Request;
 import com.fc.focus.api.http.HttpUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -39,7 +40,7 @@ public class RegisterTest {
         };
     }
 
-    @Test(dataProvider = "date", enabled = false , groups = "security")
+    @Test(dataProvider = "date", groups = "security")
     public void register(String username, String password, boolean assert0) {
 
         Map map = new HashMap();
@@ -60,7 +61,7 @@ public class RegisterTest {
         }
     }
 
-    @Test(dataProvider = "date2", enabled = false , groups = "security")
+    @Test(dataProvider = "date2", groups = "security")
     public void register0(Register register, boolean assert0) {
 
         Map map = new HashMap();
@@ -83,13 +84,15 @@ public class RegisterTest {
 
 
 
-    private class Register {
+    private class Register implements Request{
         private String username;
         private String password;
+        private final Map<String, String> header ;
 
         public Register(String username, String password) {
             this.username = username;
             this.password = password;
+            this.header = new HashMap<String, String>();
         }
 
         public String getUsername() {
@@ -98,6 +101,26 @@ public class RegisterTest {
 
         public String getPassword() {
             return password;
+        }
+
+        public String getParamJson() {
+            return null;
+        }
+
+        public String getURL() {
+            return null;
+        }
+
+        public String getEndpoint() {
+            return null;
+        }
+
+        public Map<String, String> getHeader() {
+            return header;
+        }
+
+        public void setHeader(String key, String value) {
+            this.header.put(key, value);
         }
     }
 }
