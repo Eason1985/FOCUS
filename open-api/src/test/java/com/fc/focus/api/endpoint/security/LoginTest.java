@@ -16,29 +16,30 @@ import java.util.Map;
  */
 public class LoginTest {
 
-    private static final String URL = TestConstance.HOST + "";
+    private static final String URL = TestConstance.HOST + "/aiaf/sgw/v1/security/login";
 
     @DataProvider
     public Object[][] date() {
         return new Object[][] {
                 { "15000000000", "12345678a", false},
                 { "15000000001", "12345678a", false},
-                { "1500000", "12345678a", false},
-                { "sdfafd", "12345", false},
         };
     }
 
-    @Test(dataProvider = "date", enabled = false , groups = "security")
+    @Test(dataProvider = "date", groups = "security")
     public void login(String username, String password, boolean assert0) {
 
         Map map = new HashMap();
-        map.put("username", username);
-        map.put("password", password);
+        map.put("clientId", username);
+        map.put("clientSecret", password);
 
         String json = JSON.toJSONString(map);
-        try {
-            HttpUtils.HttpResult httpResult = HttpUtils.post(URL, json, new HashMap<String, String>());
+        Map<String, String> header = new HashMap<String, String>();
+        header.put("AppId", "079b8de8-0894-411b-aa48-853bb48f069d");
 
+        try {
+            HttpUtils.HttpResult httpResult = HttpUtils.post(URL, json, header);
+            System.out.println(httpResult.getResponseBodyString());
             if (!assert0) {
                 Assert.assertEquals(httpResult.getStatusCode(), 400);
             } else {
