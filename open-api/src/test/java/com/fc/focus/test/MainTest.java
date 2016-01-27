@@ -31,7 +31,7 @@ public class MainTest {
         Class<?> factory = Class.forName("");
         HttpRemoteFactory instance = (HttpRemoteFactory) factory.newInstance();
         Object[][] testCase = new Object[instance.make().size()][2];
-
+        //com.fc.focus.api.endpoint
         return testCase;
     }
 }
