@@ -1,5 +1,6 @@
-package com.fc.focus.api.common;
+package com.fc.focus.api.common.packageScan;
 
+import com.fc.focus.api.common.XmlUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -32,8 +33,10 @@ public class ClassScanUtil {
                 } else {
                     clazz = Class.forName(packageName + "." + f.getName().split("\\.")[0]);
                     //此处加过滤
-                    Focus focus = (Focus) clazz.getAnnotation(Focus.class);
-                    if (focus != null && XmlUtil.getGroups().contains(focus.groups()) && !list.contains(clazz)) {
+                    List<ScanFilter> filterList = XmlUtil.getFilters();
+                    ScanClass scanClass = new ScanClass(filterList);
+                    scanClass.invoke(clazz);
+                    if (scanClass.getPassFlag() && !list.contains(clazz)) {
                         list.add(clazz);
                     }
                 }
@@ -61,13 +64,6 @@ public class ClassScanUtil {
             System.out.println(clazz);
         }
 
-    }
-
-    public static interface ScanFilter {
-
-        boolean pass(Class c);
-
-        ScanFilter getNext();
     }
 
 
