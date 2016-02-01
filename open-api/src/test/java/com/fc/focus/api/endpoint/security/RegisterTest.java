@@ -1,7 +1,10 @@
 package com.fc.focus.api.endpoint.security;
 
 import com.alibaba.fastjson.JSON;
+import com.fc.focus.api.common.Focus;
+import com.fc.focus.api.common.HttpRemoteFactory;
 import com.fc.focus.api.common.Request;
+import com.fc.focus.api.common.Response;
 import com.fc.focus.api.http.HttpUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -14,7 +17,8 @@ import java.util.Map;
 /**
  * Created by Eason on 16/1/20.
  */
-public class RegisterTest {
+//@Focus(groups = "endpoint")
+public class RegisterTest implements HttpRemoteFactory{
 
     private static final String URL = "";
 
@@ -82,6 +86,9 @@ public class RegisterTest {
         }
     }
 
+    public Map<Request, Class<? extends Response>> make() {
+        return null;
+    }
 
 
     private class Register implements Request{
