@@ -85,9 +85,9 @@ public class LoginTest implements HttpRemoteFactory {
         login.setURL(URL);
 
         LoginReq login2 = new LoginReq();
-        login.setHeader(header);
-        login.setParamJson(json2);
-        login.setURL(URL);
+        login2.setHeader(header);
+        login2.setParamJson(json2);
+        login2.setURL(URL);
 
         //新建Response
         LoginRes loginRes = new LoginRes();
