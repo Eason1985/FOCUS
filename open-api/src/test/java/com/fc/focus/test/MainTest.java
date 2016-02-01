@@ -1,9 +1,9 @@
 package com.fc.focus.test;
 
-import com.fc.focus.api.common.ClassScanUtil;
 import com.fc.focus.api.common.HttpRemoteFactory;
 import com.fc.focus.api.common.Request;
 import com.fc.focus.api.common.Response;
+import com.fc.focus.api.common.packageScan.ClassScanUtil;
 import com.fc.focus.api.http.HttpUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -61,14 +61,16 @@ public class MainTest {
         return testCase;
     }
 
-    private  int getArraySize(List<Class<?>> scanList) {
+    private int getArraySize(List<Class<?>> scanList) {
         int count = 0;
         try {
             for (int i = 0; i < scanList.size(); i++) {
                 Class<?> testClass = Class.forName(scanList.get(i).getName());
                 HttpRemoteFactory instance = (HttpRemoteFactory) testClass.newInstance();
                 Map<Request, Class<? extends Response>> map = instance.make();
-                count += map.size();
+                if (map != null) {
+                    count += map.size();
+                }
             }
             return count;
         } catch (Exception e) {
