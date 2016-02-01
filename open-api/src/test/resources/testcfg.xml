@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+1，标注Focus注解，设置groups属性，只有配置了的group才能被扫描
+2，配置要扫描的包
+-->
+<test>
+    <groups>
+        <group>endpoint</group>
+        <group>secutity</group>
+    </groups>
+    <packages>
+        <package>com.fc.focus.api.common</package>
+        <package>com.fc.focus.api</package>
+    </packages>
+</test>
+
+
+
