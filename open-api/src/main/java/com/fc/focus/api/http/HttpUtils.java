@@ -2,7 +2,6 @@ package com.fc.focus.api.http;
 
 import com.fc.focus.api.common.Request;
 import com.fc.focus.api.common.Response;
-import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -28,13 +27,23 @@ public class HttpUtils {
     /**默认编码 UTF-8*/
     public static final String CHARSET ="UTF-8";
 
+
     public static Response invoke(Request request, Class<? extends Response> response) throws IOException, IllegalAccessException, InstantiationException {
         HttpResult result = post(request);
-        Response res = response.newInstance();
-        res.setResult(result.getResponseBody());
-        res.setHttpCode(result.getStatusCode());
-        return res;
+        Class<?> resp = null;
+        try {
+            resp = Class.forName(response.getName());
+            Response res = (Response) resp.newInstance();
+            res.setResult(result.getResponseBody());
+            res.setHttpCode(result.getStatusCode());
+            return res;
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 
     public static HttpResult post(String url, String params, Map<String, String> header) throws IOException {
         PostMethod method = new PostMethod(url);
@@ -56,6 +65,7 @@ public class HttpUtils {
         byte[] responseBody = method.getResponseBody();
         return new HttpResult(statusCode, responseBody);
     }
+
 
     public static HttpResult post(Request request) throws IOException {
         PostMethod method = new PostMethod(request.getURL());
