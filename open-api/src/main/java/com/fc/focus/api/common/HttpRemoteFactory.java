@@ -7,5 +7,6 @@ import java.util.Map;
  */
 public interface HttpRemoteFactory {
 
-    Map<Request, Class<Response>> make();
+    Map<Request, Class<? extends Response>> make();
+   // Map<Request, Response> make();
 }
