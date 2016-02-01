@@ -1,5 +1,6 @@
 package com.fc.focus.api.common;
 
+import com.fc.focus.api.common.packageScan.ScanFilter;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -54,6 +55,30 @@ public class XmlUtil {
         List<Element> groupList = groups.elements("package");
 
         return getEleList(groupList);
+    }
+
+    public static List<ScanFilter> getFilters() {
+
+        //获取根元素
+        Element root = getDocument().getRootElement();
+        //获取所有group节点
+        Element groups = root.element("filters");
+
+        List<Element> groupList = groups.elements("filter");
+
+        List<String> filterList = getEleList(groupList);
+        List<ScanFilter> classList = new ArrayList<ScanFilter>();
+
+        for (String filter : filterList) {
+            Class<ScanFilter> clazz = null;
+            try {
+                clazz = (Class<ScanFilter>) Class.forName(filter);
+                classList.add(clazz.newInstance());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return classList;
     }
 
     public static List<String> getEleList(List<Element> groupList) {
