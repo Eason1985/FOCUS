@@ -9,6 +9,7 @@ public interface Request {
 
     /**
      * have one json per case.
+     *
      * @return
      */
     String getParamJson();
@@ -18,5 +19,7 @@ public interface Request {
     String getEndpoint();
 
     Map<String, String> getHeader();
+
+    String getMethod();
 
 }
