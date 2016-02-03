@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by Eason on 16/1/20.
  */
-//@Focus(groups = "endpoint")
+@Focus(groups = "endpoint")
 public class RegisterTest implements HttpRemoteFactory{
 
     private static final String URL = "";
@@ -124,6 +124,10 @@ public class RegisterTest implements HttpRemoteFactory{
 
         public Map<String, String> getHeader() {
             return header;
+        }
+
+        public String getMethod() {
+            return "POST";
         }
 
         public void setHeader(String key, String value) {

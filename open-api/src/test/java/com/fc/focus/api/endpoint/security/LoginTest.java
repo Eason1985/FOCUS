@@ -67,7 +67,7 @@ public class LoginTest implements HttpRemoteFactory {
     public Map<Request, Class<? extends Response>> make() {
 
         Map map = new HashMap();
-        map.put("clientId", "15000000000");
+        map.put("clientId", "15500000000");
         map.put("clientSecret", "12345678a");
         String json = JSON.toJSONString(map);
         Map<String, String> header = new HashMap<String, String>();
@@ -119,6 +119,10 @@ public class LoginTest implements HttpRemoteFactory {
 
         public Map<String, String> getHeader() {
             return header;
+        }
+
+        public String getMethod() {
+            return "POST";
         }
 
         public void setHeader(Map<String, String> header) {

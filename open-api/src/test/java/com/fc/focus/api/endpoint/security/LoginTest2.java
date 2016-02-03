@@ -111,6 +111,10 @@ public class LoginTest2 implements HttpRemoteFactory {
             return header;
         }
 
+        public String getMethod() {
+            return "POST";
+        }
+
         public void setHeader(Map<String, String> header) {
             this.header = header;
         }
