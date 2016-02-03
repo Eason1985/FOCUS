@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
 /**
- * @author hwa
- * @date 2016/1/28
+ * Note : 解析XML工具类
+ * Author : hwa
+ * Date : 2016/1/28
  */
 
 public class XmlUtil {
