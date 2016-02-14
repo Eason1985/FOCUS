@@ -81,9 +81,9 @@ public class HttpUtils {
         byte[] responseBody = method.getResponseBody();
 
         String resStr = new String(responseBody, CHARSET);
-        System.out.println("---------URL--:"+url);
-        System.out.println("----response--:" + resStr);
-        System.out.println("-------code---:"+statusCode);
+        System.out.println("------URL:"+url);
+        System.out.println("-response:" + resStr);
+        System.out.println("-----code:"+statusCode);
 
         return new HttpResult(statusCode, responseBody);
     }
@@ -110,9 +110,9 @@ public class HttpUtils {
         byte[] responseBody = method.getResponseBody();
 
         String resStr = new String(responseBody, CHARSET);
-        System.out.println("---------URL--:"+url);
-        System.out.println("----response--:" + resStr);
-        System.out.println("-------code---:"+statusCode);
+        System.out.println("------URL:"+url);
+        System.out.println("-response:" + resStr);
+        System.out.println("-----code:"+statusCode);
 
         return new HttpResult(statusCode, responseBody);
     }
@@ -137,9 +137,10 @@ public class HttpUtils {
         byte[] responseBody = method.getResponseBody();
 
         String resStr = new String(responseBody, CHARSET);
-        System.out.println("---------URL--:"+request.getURL());
-        System.out.println("----response--:" + resStr);
-        System.out.println("-------code---:"+statusCode);
+        System.out.println("------URL:"+request.getURL());
+        System.out.println("-response:" + resStr);
+        System.out.println("-----code:"+statusCode);
+
         return new HttpResult(statusCode, responseBody);
     }
 
@@ -164,9 +165,10 @@ public class HttpUtils {
         byte[] responseBody = method.getResponseBody();
 
         String resStr = new String(responseBody, CHARSET);
-        System.out.println("---------URL--:"+testCase.getUrl());
-        System.out.println("----response--:" + resStr);
-        System.out.println("-------code---:"+statusCode);
+        System.out.println("------URL:"+testCase.getUrl());
+        System.out.println("-response:" + resStr);
+        System.out.println("-----code:"+statusCode);
+
         return new HttpResult(statusCode, responseBody);
     }
 
@@ -197,9 +199,10 @@ public class HttpUtils {
             byte[] responseBody = getMethod.getResponseBody();
 
             String resStr = new String(responseBody, CHARSET);
-            System.out.println("---------URL--:"+request.getURL());
-            System.out.println("----response--:" + resStr);
-            System.out.println("-------code---:"+statusCode);
+            System.out.println("------URL:"+request.getURL());
+            System.out.println("-response:" + resStr);
+            System.out.println("-----code:"+statusCode);
+
 
             return new HttpResult(statusCode, responseBody);
         } catch (Exception e) {
@@ -239,9 +242,9 @@ public class HttpUtils {
             byte[] responseBody = getMethod.getResponseBody();
 
             String resStr = new String(responseBody, CHARSET);
-            System.out.println("---------URL--:"+testCase.getUrl());
-            System.out.println("----response--:" + resStr);
-            System.out.println("-------code---:"+statusCode);
+            System.out.println("------URL:"+testCase.getUrl());
+            System.out.println("-response:" + resStr);
+            System.out.println("-----code:"+statusCode);
 
             return new HttpResult(statusCode, responseBody);
         } catch (Exception e) {
