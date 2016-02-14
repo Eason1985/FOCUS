@@ -58,11 +58,12 @@ public class ExcelUtil {
 
             String method = sheet.getRow(i).getCell(4).toString();
             String auth = sheet.getRow(i).getCell(5).toString();
+            String assertType = sheet.getRow(i).getCell(6).toString();
+
             String groovyScript = "";
-            if (sheet.getRow(i).getCell(6) != null) {
-                groovyScript = sheet.getRow(i).getCell(6).toString();
+            if (sheet.getRow(i).getCell(7) != null) {
+                groovyScript = sheet.getRow(i).getCell(7).toString();
             }
-            String assertType = sheet.getRow(i).getCell(7).toString();
 
             String expected = "";
             if (sheet.getRow(i).getCell(8).getCellType() == Cell.CELL_TYPE_NUMERIC) {
