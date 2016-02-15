@@ -11,8 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Note : 解析Excel工具类
@@ -32,9 +31,56 @@ public class ExcelUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // 读取第一章表格内容  
+        // 读取第一章表格内容
         XSSFSheet sheet = wb.getSheetAt(0);
+
         return sheet;
+    }
+
+    public static List<XSSFSheet> getSheetList() throws FileNotFoundException {
+
+        String filePath = PropertiesUtil.getProperties().getProperty("excelUrl");
+        XSSFWorkbook wb = null;
+        try {
+            wb = new XSSFWorkbook(filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 通过sheet名获取sheet
+        String sheetName = PropertiesUtil.getProperties().getProperty("sheets");
+        String[] sheets = sheetName.split(",");
+        List<XSSFSheet> sheetList = new ArrayList<XSSFSheet>();
+        for(String str : sheets){
+            sheetList.add(wb.getSheet(str));
+        }
+        return sheetList;
+    }
+
+
+
+    private static int getRowNumSum(List<XSSFSheet> sheetList){
+
+        int sum = 0 ;
+        for(XSSFSheet sheet : sheetList){
+            sum += (getRealRowNum(sheet)-1);
+        }
+        return sum;
+    }
+
+    public static Object[][] getRowDataSum(List<XSSFSheet> sheetList){
+
+        int rowNums = getRowNumSum(sheetList);
+        Object[][] dataProvider = new Object[rowNums][1];
+        int index = 0 ;
+        for(XSSFSheet sheet : sheetList){
+            Object[][] dataObj = getRowData(sheet);
+            for(int i = 0 ; i<dataObj.length; i++){
+                dataProvider[index][0] = dataObj[i][0];
+                index++;
+            }
+        }
+
+        return dataProvider;
     }
 
     //解析每一行数据
@@ -42,12 +88,18 @@ public class ExcelUtil {
 
         int rowNums = getRealRowNum(sheet) - 1;
         Object[][] dataProvider = new Object[rowNums][1];
+
         for (int i = 1; i < rowNums + 1; i++) {
 
             TestCaseExcel testCase = new TestCaseExcel();
 
             String URL = sheet.getRow(i).getCell(1).toString();
-            String paramJson = sheet.getRow(i).getCell(2).toString();
+          //  String paramJson = sheet.getRow(i).getCell(2).toString();
+
+            String paramJson = "";
+            if (sheet.getRow(i).getCell(2) != null) {
+                paramJson = sheet.getRow(i).getCell(2).toString();
+            }
 
             String str = sheet.getRow(i).getCell(3).toString();
             String[] headers = str.split("\\r\\n");
@@ -86,9 +138,15 @@ public class ExcelUtil {
             //将数据放入[][]
             dataProvider[i - 1][0] = testCase;
         }
+
         return dataProvider;
     }
 
+    private TestCaseExcel getTestCase(Sheet sheet){
+
+
+        return null;
+    }
 
     //使用GroovyScriptEngine执行Groovy脚本
     public static Object getGroovyResult1(String json, String fileName) throws IOException, ResourceException, ScriptException {
