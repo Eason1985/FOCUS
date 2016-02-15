@@ -10,7 +10,8 @@ import java.util.Properties;
 public class PropertiesUtil {
 
     public static Properties getProperties() {
-        String path = Class.class.getClass().getResource("/").getPath() + "testExcelCfg.properties";
+        String path = Class.class.getResource("/").getPath() + "testExcelCfg.properties";
+
         File file = new File(path);
         FileInputStream inputStream = null;
         try {
