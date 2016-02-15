@@ -1,7 +1,11 @@
 package com.fc.focus.api.http;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.fc.focus.api.common.PropertiesUtil;
 import com.fc.focus.api.common.Request;
 import com.fc.focus.api.common.Response;
+import com.fc.focus.api.common.TestCaseExcel;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -10,9 +14,9 @@ import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.lang3.StringUtils;
-import com.fc.focus.api.common.TestCaseExcel;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -59,21 +63,25 @@ public class HttpUtils {
     }
 
 
-    public static HttpResult post(String url, String params, Map<String, String> header) throws IOException {
+    public static HttpResult post(String url, String params, Map<String, String> header,HttpClient httpClient,String accessToken) throws IOException {
+
+        if (httpClient==null){
+            httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(true));
+        }
 
         PostMethod method = new PostMethod(url);
         method.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
         method.setRequestEntity(new StringRequestEntity(params, "text/xml", CHARSET));
 
+        if(accessToken!=null){
+            method.addRequestHeader("x-auth-token", accessToken);
+        }
         for (String key : header.keySet()) {
             if (!StringUtils.isBlank(key)) {
                 method.addRequestHeader(key, header.get(key));
             }
         }
 
-
-        HttpClient httpClient = new HttpClient(new HttpClientParams(),
-                new SimpleHttpConnectionManager(true));
         httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
         httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
 
@@ -81,184 +89,166 @@ public class HttpUtils {
         byte[] responseBody = method.getResponseBody();
 
         String resStr = new String(responseBody, CHARSET);
-        System.out.println("------URL:"+url);
-        System.out.println("-response:" + resStr);
-        System.out.println("-----code:"+statusCode);
 
         return new HttpResult(statusCode, responseBody);
     }
 
-    public static HttpResult get(String url, String params, Map<String, String> header) throws IOException {
+    public static HttpResult get(String url, String params, Map<String, String> header,HttpClient httpClient,String accessToken) throws IOException {
 
-        PostMethod method = new PostMethod(url);
-        method.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
-        method.setRequestEntity(new StringRequestEntity(params, "text/xml", CHARSET));
+        if (httpClient==null){
+            httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(true));
+        }
+
+        GetMethod getMethod = new GetMethod(url + "?" + params);
+        getMethod.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
+        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
+        httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
+        if(accessToken!=null){
+            getMethod.addRequestHeader("x-auth-token", accessToken);
+        }
 
         for (String key : header.keySet()) {
             if (!StringUtils.isBlank(key)) {
-                method.addRequestHeader(key, header.get(key));
+                getMethod.addRequestHeader(key,header.get(key));
             }
         }
 
+        try {
+            int statusCode = httpClient.executeMethod(getMethod);
+            byte[] responseBody = getMethod.getResponseBody();
 
-        HttpClient httpClient = new HttpClient(new HttpClientParams(),
-                new SimpleHttpConnectionManager(true));
-        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
-        httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
+            String resStr = new String(responseBody, CHARSET);
+            System.out.println("------URL:"+ url);
+            System.out.println("-response:" + resStr);
+            System.out.println("-----code:"+statusCode);
 
-        int statusCode = httpClient.executeMethod(method);
-        byte[] responseBody = method.getResponseBody();
-
-        String resStr = new String(responseBody, CHARSET);
-        System.out.println("------URL:"+url);
-        System.out.println("-response:" + resStr);
-        System.out.println("-----code:"+statusCode);
-
-        return new HttpResult(statusCode, responseBody);
+            return new HttpResult(statusCode, responseBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 
     public static HttpResult post(Request request) throws IOException {
-        PostMethod method = new PostMethod(request.getURL());
-        method.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
-        method.setRequestEntity(new StringRequestEntity(request.getParamJson(), "text/xml", CHARSET));
 
-        for (String key : request.getHeader().keySet()) {
-            if (!StringUtils.isBlank(key)) {
-                method.addRequestHeader(key, request.getHeader().get(key));
-            }
-        }
+        String url = request.getURL();
+        String params = request.getParamJson();
+        Map<String,String> headers = request.getHeader();
 
-        HttpClient httpClient = new HttpClient(new HttpClientParams(),
-                new SimpleHttpConnectionManager(true));
-        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
-        httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
+        HttpResult result = post(url, params, headers, null, null);
 
-        int statusCode = httpClient.executeMethod(method);
-        byte[] responseBody = method.getResponseBody();
-
-        String resStr = new String(responseBody, CHARSET);
-        System.out.println("------URL:"+request.getURL());
-        System.out.println("-response:" + resStr);
-        System.out.println("-----code:"+statusCode);
-
-        return new HttpResult(statusCode, responseBody);
+        return result;
     }
 
     public static HttpResult post( TestCaseExcel testCase ) throws IOException {
+        return post(testCase,null,null);
+    }
 
-        PostMethod method = new PostMethod(testCase.getUrl());
-        method.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
-        method.setRequestEntity(new StringRequestEntity(testCase.getParamJson(), "text/xml", CHARSET));
 
-        for (String key : testCase.getHeader().keySet()) {
-            if (!StringUtils.isBlank(key)) {
-                method.addRequestHeader(key, testCase.getHeader().get(key));
-            }
-        }
+    public static HttpResult post( TestCaseExcel testCase,HttpClient httpClient,String accessToken ) throws IOException {
 
-        HttpClient httpClient = new HttpClient(new HttpClientParams(),
-                new SimpleHttpConnectionManager(true));
-        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
-        httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
+        String url = testCase.getUrl();
+        String params = testCase.getParamJson();
+        Map<String,String> headers = testCase.getHeader();
+        HttpResult httpResult = post(url, params, headers, httpClient, accessToken);
 
-        int statusCode = httpClient.executeMethod(method);
-        byte[] responseBody = method.getResponseBody();
-
-        String resStr = new String(responseBody, CHARSET);
-        System.out.println("------URL:"+testCase.getUrl());
-        System.out.println("-response:" + resStr);
-        System.out.println("-----code:"+statusCode);
-
-        return new HttpResult(statusCode, responseBody);
+        return httpResult;
     }
 
     public static HttpResult get(Request request) throws IOException {
 
-        String str = request.getParamJson();
-        str = StringUtils.replace(str, "{", "");
-        str = StringUtils.replace(str, "}", "");
-        str = StringUtils.replace(str, "\"", "");
-        str = StringUtils.replace(str, ":", "=");
-        str = StringUtils.replace(str, ",", "&");
-
-        HttpClient httpClient = new HttpClient();
-        GetMethod getMethod = new GetMethod(request.getURL() + "?" + str);
-        getMethod.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
-        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
-        httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
-
-
-        for (String key : request.getHeader().keySet()) {
-            if (!StringUtils.isBlank(key)) {
-                getMethod.addRequestHeader(key, request.getHeader().get(key));
-            }
+        String url = request.getURL();
+        String params = request.getParamJson();
+        if(params!=null){
+            params=params.replaceAll("\\\\|\\{|\\}|\\\"","");
+            params=params.replaceAll("\\:","=");
+            params=params.replaceAll("\\,","&");
         }
+        Map<String ,String> headers = request.getHeader();
+        HttpResult httpResult = get(url, params, headers, null, null);
+        return httpResult;
 
-        try {
-            int statusCode = httpClient.executeMethod(getMethod);
-            byte[] responseBody = getMethod.getResponseBody();
-
-            String resStr = new String(responseBody, CHARSET);
-            System.out.println("------URL:"+request.getURL());
-            System.out.println("-response:" + resStr);
-            System.out.println("-----code:"+statusCode);
-
-
-            return new HttpResult(statusCode, responseBody);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getMethod.releaseConnection();
-        }
-
-        return null;
     }
 
 
     public static HttpResult get(TestCaseExcel testCase) throws IOException {
+        return get(testCase,null,null);
+    }
 
-        String str = testCase.getParamJson();
-        str = StringUtils.replace(str, "{", "");
-        str = StringUtils.replace(str, "}", "");
-        str = StringUtils.replace(str, "\"", "");
-        str = StringUtils.replace(str, ":", "=");
-        str = StringUtils.replace(str, ",", "&");
+    public static HttpResult get(TestCaseExcel testCase,HttpClient httpClient,String accessToken) throws IOException {
 
-        HttpClient httpClient = new HttpClient();
-        GetMethod getMethod = new GetMethod(testCase.getUrl() + "?" + str);
-        getMethod.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
-        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
-        httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
+        String url = testCase.getUrl();
+        String params = testCase.getParamJson();
+        if(params!=null){
+            params=params.replaceAll("\\\\|\\{|\\}|\\\"","");
+            params=params.replaceAll("\\:","=");
+            params=params.replaceAll("\\,","&");
+        }
+        Map<String ,String> headers = testCase.getHeader();
+        HttpResult httpResult = get(url, params, headers, httpClient, accessToken);
+        return httpResult;
+    }
 
 
-        for (String key : testCase.getHeader().keySet()) {
+    public static HttpResult AuthGet(TestCaseExcel testCase) throws Exception {
+
+        //先登录,登录用POST
+        HttpClient httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(false));
+        String accessToken = loginAuth(httpClient);
+
+        //用同一个连接发送请求
+        HttpResult httpResult = get(testCase, httpClient,accessToken);
+        return httpResult;
+    }
+
+    public static HttpResult AuthPost(TestCaseExcel testCase) throws Exception {
+
+        //先登录,登录用POST
+        HttpClient httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(false));
+        String accessToken = loginAuth(httpClient);
+
+        //用同一个连接发送请求
+        HttpResult httpResult = post(testCase, httpClient,accessToken);
+        return httpResult;
+    }
+
+
+    private static  String loginAuth(HttpClient httpClient) throws Exception {
+
+        String url = PropertiesUtil.getProperties().getProperty("url");
+        Map map = new HashMap();
+        map.put("clientId", PropertiesUtil.getProperties().getProperty("clientId"));
+        map.put("clientSecret", PropertiesUtil.getProperties().getProperty("clientSecret"));
+        String params = JSON.toJSONString(map);
+        Map<String, String> header = new HashMap<String, String>();
+        header.put("AppId",PropertiesUtil.getProperties().getProperty("AppId"));
+
+        PostMethod method = new PostMethod(url);
+        method.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
+        method.setRequestEntity(new StringRequestEntity(params, "text/xml", CHARSET));
+
+        for (String key : header.keySet()) {
             if (!StringUtils.isBlank(key)) {
-                getMethod.addRequestHeader(key, testCase.getHeader().get(key));
+                method.addRequestHeader(key, header.get(key));
             }
         }
 
-        try {
-            int statusCode = httpClient.executeMethod(getMethod);
-            byte[] responseBody = getMethod.getResponseBody();
+        httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
+        httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
 
-            String resStr = new String(responseBody, CHARSET);
-            System.out.println("------URL:"+testCase.getUrl());
-            System.out.println("-response:" + resStr);
-            System.out.println("-----code:"+statusCode);
-
-            return new HttpResult(statusCode, responseBody);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            getMethod.releaseConnection();
+        int status = httpClient.executeMethod(method);
+        byte[] bodyResult = method.getResponseBody();
+        String accessToken = "";
+        if (bodyResult!=null&&status==200){
+            String resBody = new String(bodyResult);
+            JSONObject json = JSONObject.parseObject(resBody);
+            accessToken = json.get("accessToken").toString();
+            System.out.println(accessToken);
         }
-
-        return null;
-
-
-
-
+        return accessToken;
     }
+
 
 
     public static class HttpResult {
