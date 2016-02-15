@@ -103,6 +103,8 @@ public class LoginTest implements HttpRemoteFactory {
     private class LoginReq implements Request{
         private  String URL ;
         private  Map<String,String> header;
+
+
         private  String paramJson ;
 
         public String getURL() {
