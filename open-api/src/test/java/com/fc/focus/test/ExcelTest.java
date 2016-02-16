@@ -3,15 +3,12 @@ package com.fc.focus.test;
 import com.fc.focus.api.common.ExcelUtil;
 import com.fc.focus.api.common.TestCaseExcel;
 import com.fc.focus.api.http.HttpUtils;
-import groovy.util.ResourceException;
-import groovy.util.ScriptException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 /**
