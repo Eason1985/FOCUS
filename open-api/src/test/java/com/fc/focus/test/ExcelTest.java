@@ -32,13 +32,9 @@ public class ExcelTest {
         if (testCase.getAuth().equals("Y")){
             if (assertType.equals("HC")) {
                 if (testCase.getMethod().equals("GET")) {
-                    HttpUtils.HttpResult result = HttpUtils.AuthGet(testCase);
-                    int statusCode = result.getStatusCode();
-                    Assert.assertEquals(statusCode + "", testCase.getExpected());
+                    Assert.assertEquals(HttpUtils.AuthGet(testCase).getStatusCode() + "", testCase.getExpected());
                 } else {
-                    HttpUtils.HttpResult result = HttpUtils.AuthPost(testCase);
-                    int statusCode = result.getStatusCode();
-                    Assert.assertEquals(statusCode + "", testCase.getExpected());
+                    Assert.assertEquals(HttpUtils.AuthPost(testCase).getStatusCode() + "", testCase.getExpected());
                 }
             }else if (assertType.equals("RB")) {
                 if (testCase.getMethod().equals("GET")) {
@@ -54,13 +50,11 @@ public class ExcelTest {
                 if (testCase.getMethod().equals("GET")) {
                     HttpUtils.HttpResult result = HttpUtils.AuthGet(testCase);
                     String responseBody = new String(result.getResponseBody());
-
                     Object groovyResult = ExcelUtil.getGroovyResult(responseBody, testCase.getGroovyScript());
                     Assert.assertEquals(groovyResult.toString(), testCase.getExpected());
                 } else {
                     HttpUtils.HttpResult result = HttpUtils.AuthPost(testCase);
                     String responseBody = new String(result.getResponseBody());
-
                     Object groovyResult = ExcelUtil.getGroovyResult(responseBody, testCase.getGroovyScript());
                     Assert.assertEquals(groovyResult.toString(), testCase.getExpected());
                 }
