@@ -82,13 +82,16 @@ public class HttpUtils {
             }
         }
 
+     //   httpClient.getHostConfiguration().setProxy("127.0.0.1", 8888);
         httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
         httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
 
         int statusCode = httpClient.executeMethod(method);
         byte[] responseBody = method.getResponseBody();
-
         String resStr = new String(responseBody, CHARSET);
+        System.out.println("------URL:"+ url);
+        System.out.println("-response:" + resStr);
+        System.out.println("-----code:"+statusCode);
 
         return new HttpResult(statusCode, responseBody);
     }
@@ -99,7 +102,14 @@ public class HttpUtils {
             httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(true));
         }
 
-        GetMethod getMethod = new GetMethod(url + "?" + params);
+        GetMethod getMethod = null;
+        if(params!=null){
+            getMethod = new GetMethod(url + "?" + params);
+        }else{
+            getMethod = new GetMethod(url);
+        }
+
+
         getMethod.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
         httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(CONNECTION_TIMEOUT);
         httpClient.getHttpConnectionManager().getParams().setSoTimeout(READ_TIMEOUT);
@@ -118,7 +128,7 @@ public class HttpUtils {
             byte[] responseBody = getMethod.getResponseBody();
 
             String resStr = new String(responseBody, CHARSET);
-            System.out.println("------URL:"+ url);
+            System.out.println("------URL:"+ url+ "?" + params);
             System.out.println("-response:" + resStr);
             System.out.println("-----code:"+statusCode);
 
@@ -161,9 +171,10 @@ public class HttpUtils {
         String url = request.getURL();
         String params = request.getParamJson();
         if(params!=null){
-            params=params.replaceAll("\\\\|\\{|\\}|\\\"","");
-            params=params.replaceAll("\\:","=");
-            params=params.replaceAll("\\,","&");
+            params = params.replaceAll("\\\\|\\{|\\}|\\\"|\\\n", "")
+                    .replaceAll(":","=")
+                    .replaceAll(",","&")
+                    .replaceAll(" ","");
         }
         Map<String ,String> headers = request.getHeader();
         HttpResult httpResult = get(url, params, headers, null, null);
@@ -181,9 +192,10 @@ public class HttpUtils {
         String url = testCase.getUrl();
         String params = testCase.getParamJson();
         if(params!=null){
-            params=params.replaceAll("\\\\|\\{|\\}|\\\"","");
-            params=params.replaceAll("\\:","=");
-            params=params.replaceAll("\\,","&");
+            params = params.replaceAll("\\\\|\\{|\\}|\\\"|\\\n", "")
+                    .replaceAll(":","=")
+                    .replaceAll(",","&")
+                    .replaceAll(" ","");
         }
         Map<String ,String> headers = testCase.getHeader();
         HttpResult httpResult = get(url, params, headers, httpClient, accessToken);
@@ -244,7 +256,6 @@ public class HttpUtils {
             String resBody = new String(bodyResult);
             JSONObject json = JSONObject.parseObject(resBody);
             accessToken = json.get("accessToken").toString();
-            System.out.println(accessToken);
         }
         return accessToken;
     }
