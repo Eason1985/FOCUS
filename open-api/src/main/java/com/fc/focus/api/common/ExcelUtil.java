@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import javax.sound.midi.MidiDevice;
 import java.io.*;
 import java.util.*;
 
@@ -86,12 +87,14 @@ public class ExcelUtil {
     //解析每一行数据
     public static Object[][] getRowData(Sheet sheet) {
 
+
         int rowNums = getRealRowNum(sheet) - 1;
         Object[][] dataProvider = new Object[rowNums][1];
 
         for (int i = 1; i < rowNums + 1; i++) {
 
-            String type = sheet.getRow(i).getCell(0).toString();
+
+            String type = sheet.getSheetName()+"_"+"第"+(i+1)+"行"+"_"+sheet.getRow(i).getCell(0).toString();
             try {
                 TestCaseExcel testCase = new TestCaseExcel();
                 String URL = sheet.getRow(i).getCell(1).toString();
@@ -125,7 +128,7 @@ public class ExcelUtil {
                     expected = sheet.getRow(i).getCell(8).toString();
                 }
 
-
+                testCase.setType(type);
                 testCase.setUrl(URL);
                 testCase.setParamJson(paramJson);
                 testCase.setHeader(header);
