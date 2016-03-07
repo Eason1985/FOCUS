@@ -79,7 +79,7 @@ public class ExcelUtil {
                 index++;
             }
         }
-
+        System.out.println("===============开始测试=================");
         return dataProvider;
     }
 
@@ -91,52 +91,59 @@ public class ExcelUtil {
 
         for (int i = 1; i < rowNums + 1; i++) {
 
-            TestCaseExcel testCase = new TestCaseExcel();
+            String type = sheet.getRow(i).getCell(0).toString();
+            try {
+                TestCaseExcel testCase = new TestCaseExcel();
+                String URL = sheet.getRow(i).getCell(1).toString();
 
-            String URL = sheet.getRow(i).getCell(1).toString();
-          //  String paramJson = sheet.getRow(i).getCell(2).toString();
+                String paramJson = "";
+                if (sheet.getRow(i).getCell(2) != null) {
+                    paramJson = sheet.getRow(i).getCell(2).toString();
+                }
 
-            String paramJson = "";
-            if (sheet.getRow(i).getCell(2) != null) {
-                paramJson = sheet.getRow(i).getCell(2).toString();
+                String str = sheet.getRow(i).getCell(3).toString();
+                String[] headers = str.split("\\r\\n");
+                HashMap<String, String> header = new HashMap<String, String>();
+                for (String s : headers) {
+                    header.put(s.substring(0, s.indexOf(":")), s.substring(str.indexOf(":") + 1, s.length()));
+                }
+
+                String method = sheet.getRow(i).getCell(4).toString();
+                String auth = sheet.getRow(i).getCell(5).toString();
+                String assertType = sheet.getRow(i).getCell(6).toString();
+
+                String groovyScript = "";
+                if (sheet.getRow(i).getCell(7) != null) {
+                    groovyScript = sheet.getRow(i).getCell(7).toString();
+                }
+
+                String expected = "";
+                if (sheet.getRow(i).getCell(8).getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                    Object obj = (Object) Math.round(sheet.getRow(i).getCell(8).getNumericCellValue());
+                    expected = obj.toString();
+                } else {
+                    expected = sheet.getRow(i).getCell(8).toString();
+                }
+
+
+                testCase.setUrl(URL);
+                testCase.setParamJson(paramJson);
+                testCase.setHeader(header);
+                testCase.setMethod(method);
+                testCase.setAuth(auth);
+                testCase.setGroovyScript(groovyScript);
+                testCase.setAssertType(assertType);
+                testCase.setExpected(expected);
+
+                //将数据放入[][]
+                dataProvider[i - 1][0] = testCase;
+                System.out.println("读取成功："+type);
+            }catch (Exception e){
+                e.printStackTrace();
+                System.out.println("读取失败："+type);
             }
 
-            String str = sheet.getRow(i).getCell(3).toString();
-            String[] headers = str.split("\\r\\n");
-            HashMap<String, String> header = new HashMap<String, String>();
-            for (String s : headers) {
-                header.put(s.substring(0, s.indexOf(":")), s.substring(str.indexOf(":") + 1, s.length()));
-            }
 
-            String method = sheet.getRow(i).getCell(4).toString();
-            String auth = sheet.getRow(i).getCell(5).toString();
-            String assertType = sheet.getRow(i).getCell(6).toString();
-
-            String groovyScript = "";
-            if (sheet.getRow(i).getCell(7) != null) {
-                groovyScript = sheet.getRow(i).getCell(7).toString();
-            }
-
-            String expected = "";
-            if (sheet.getRow(i).getCell(8).getCellType() == Cell.CELL_TYPE_NUMERIC) {
-                Object obj = (Object) Math.round(sheet.getRow(i).getCell(8).getNumericCellValue());
-                expected = obj.toString();
-            } else {
-                expected = sheet.getRow(i).getCell(8).toString();
-            }
-
-
-            testCase.setUrl(URL);
-            testCase.setParamJson(paramJson);
-            testCase.setHeader(header);
-            testCase.setMethod(method);
-            testCase.setAuth(auth);
-            testCase.setGroovyScript(groovyScript);
-            testCase.setAssertType(assertType);
-            testCase.setExpected(expected);
-
-            //将数据放入[][]
-            dataProvider[i - 1][0] = testCase;
         }
 
         return dataProvider;
