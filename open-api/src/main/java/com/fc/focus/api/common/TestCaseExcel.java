@@ -7,6 +7,7 @@ import java.util.Map;
  */
 public class TestCaseExcel {
 
+    private String type;
     private String url;
     private String paramJson;
     private Map<String, String> header;
@@ -16,6 +17,13 @@ public class TestCaseExcel {
     private String assertType;
     private String expected;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getUrl() {
         return url;
@@ -37,7 +45,7 @@ public class TestCaseExcel {
         return header;
     }
 
-    public void setHeader(Map header) {
+    public void setHeader(Map<String, String> header) {
         this.header = header;
     }
 
@@ -79,5 +87,20 @@ public class TestCaseExcel {
 
     public void setExpected(String expected) {
         this.expected = expected;
+    }
+
+    @Override
+    public String toString() {
+        return "TestCaseExcel{" +
+                "type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", paramJson='" + paramJson + '\'' +
+                ", header=" + header +
+                ", method='" + method + '\'' +
+                ", auth='" + auth + '\'' +
+                ", groovyScript='" + groovyScript + '\'' +
+                ", assertType='" + assertType + '\'' +
+                ", expected='" + expected + '\'' +
+                '}';
     }
 }
