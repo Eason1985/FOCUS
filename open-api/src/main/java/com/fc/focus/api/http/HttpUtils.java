@@ -63,7 +63,7 @@ public class HttpUtils {
     }
 
 
-    public static HttpResult post(String url, String params, Map<String, String> header,HttpClient httpClient,String accessToken) throws IOException {
+    public static HttpResult post(String url, String params, Map<String, String> header,HttpClient httpClient,String accessToken,String rowInfo) throws IOException {
 
         if (httpClient==null){
             httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(true));
@@ -89,14 +89,17 @@ public class HttpUtils {
         int statusCode = httpClient.executeMethod(method);
         byte[] responseBody = method.getResponseBody();
         String resStr = new String(responseBody, CHARSET);
+        System.out.println("--rowInfo:"+rowInfo);
         System.out.println("------URL:"+ url);
         System.out.println("-response:" + resStr);
         System.out.println("-----code:"+statusCode);
 
+
+
         return new HttpResult(statusCode, responseBody);
     }
 
-    public static HttpResult get(String url, String params, Map<String, String> header,HttpClient httpClient,String accessToken) throws IOException {
+    public static HttpResult get(String url, String params, Map<String, String> header,HttpClient httpClient,String accessToken,String rowInfo) throws IOException {
 
         if (httpClient==null){
             httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(true));
@@ -128,7 +131,8 @@ public class HttpUtils {
             byte[] responseBody = getMethod.getResponseBody();
 
             String resStr = new String(responseBody, CHARSET);
-            System.out.println("------URL:"+ url+ "?" + params);
+            System.out.println("--rowInfo:"+ rowInfo);
+            System.out.println("------url:"+ url+ "?" + params);
             System.out.println("-response:" + resStr);
             System.out.println("-----code:"+statusCode);
 
@@ -146,7 +150,7 @@ public class HttpUtils {
         String params = request.getParamJson();
         Map<String,String> headers = request.getHeader();
 
-        HttpResult result = post(url, params, headers, null, null);
+        HttpResult result = post(url, params, headers, null, null,null);
 
         return result;
     }
@@ -161,7 +165,7 @@ public class HttpUtils {
         String url = testCase.getUrl();
         String params = testCase.getParamJson();
         Map<String,String> headers = testCase.getHeader();
-        HttpResult httpResult = post(url, params, headers, httpClient, accessToken);
+        HttpResult httpResult = post(url, params, headers, httpClient, accessToken,testCase.getType());
 
         return httpResult;
     }
@@ -177,7 +181,7 @@ public class HttpUtils {
                     .replaceAll(" ","");
         }
         Map<String ,String> headers = request.getHeader();
-        HttpResult httpResult = get(url, params, headers, null, null);
+        HttpResult httpResult = get(url, params, headers, null, null,null);
         return httpResult;
 
     }
@@ -198,7 +202,7 @@ public class HttpUtils {
                     .replaceAll(" ","");
         }
         Map<String ,String> headers = testCase.getHeader();
-        HttpResult httpResult = get(url, params, headers, httpClient, accessToken);
+        HttpResult httpResult = get(url, params, headers, httpClient, accessToken,testCase.getType());
         return httpResult;
     }
 
