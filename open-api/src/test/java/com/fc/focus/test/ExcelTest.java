@@ -27,6 +27,8 @@ public class ExcelTest {
 
     @Test(dataProvider = "dataProvider")
     public void doTest(TestCaseExcel testCase) throws Exception {
+
+
         String assertType = testCase.getAssertType();
 
         if (testCase.getAuth().equals("Y")){
@@ -109,6 +111,7 @@ public class ExcelTest {
         try {
 
             List<XSSFSheet> list = ExcelUtil.getSheetList();
+            System.out.println("===============开始读取数据=================");
             return ExcelUtil.getRowDataSum(list);
 
         } catch (FileNotFoundException e) {
