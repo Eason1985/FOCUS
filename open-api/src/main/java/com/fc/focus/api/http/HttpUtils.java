@@ -2,10 +2,7 @@ package com.fc.focus.api.http;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.fc.focus.api.common.PropertiesUtil;
-import com.fc.focus.api.common.Request;
-import com.fc.focus.api.common.Response;
-import com.fc.focus.api.common.TestCaseExcel;
+import com.fc.focus.api.common.*;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.SimpleHttpConnectionManager;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -211,7 +208,7 @@ public class HttpUtils {
 
         //先登录,登录用POST
         HttpClient httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(false));
-        String accessToken = loginAuth(httpClient);
+        String accessToken = loginAuth(httpClient,testCase);
 
         //用同一个连接发送请求
         HttpResult httpResult = get(testCase, httpClient,accessToken);
@@ -222,7 +219,7 @@ public class HttpUtils {
 
         //先登录,登录用POST
         HttpClient httpClient = new HttpClient(new HttpClientParams(),new SimpleHttpConnectionManager(false));
-        String accessToken = loginAuth(httpClient);
+        String accessToken = loginAuth(httpClient,testCase);
 
         //用同一个连接发送请求
         HttpResult httpResult = post(testCase, httpClient,accessToken);
@@ -230,15 +227,30 @@ public class HttpUtils {
     }
 
 
-    private static  String loginAuth(HttpClient httpClient) throws Exception {
+    public static  String loginAuth(HttpClient httpClient,TestCaseExcel testCase) throws Exception {
 
-        String url = PropertiesUtil.getProperties().getProperty("url");
+        UserAuthFactory.UserAuth  userAuth = null;
+        if(userAuth==null||userAuth.getAppId()!=testCase.getHeader().get("AppId")){
+            userAuth = UserAuthFactory.getInstance(testCase.getHeader().get("AppId"));
+        }
+
+        String url = userAuth.getUrl();
+        Map map = new HashMap();
+        map.put("clientId", userAuth.getClientId());
+        map.put("clientSecret",userAuth.getClientSecret());
+        String params = JSON.toJSONString(map);
+        Map<String, String> header = new HashMap<String, String>();
+        header.put("AppId",userAuth.getAppId());
+
+
+
+        /*String url = PropertiesUtil.getProperties().getProperty("url");
         Map map = new HashMap();
         map.put("clientId", PropertiesUtil.getProperties().getProperty("clientId"));
         map.put("clientSecret", PropertiesUtil.getProperties().getProperty("clientSecret"));
         String params = JSON.toJSONString(map);
         Map<String, String> header = new HashMap<String, String>();
-        header.put("AppId",PropertiesUtil.getProperties().getProperty("AppId"));
+        header.put("AppId",PropertiesUtil.getProperties().getProperty("AppId"));*/
 
         PostMethod method = new PostMethod(url);
         method.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);

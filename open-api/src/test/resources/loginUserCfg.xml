@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+    <userinfo>
+        <AppId>079b8de8-0894-411b-aa48-853bb48f069d</AppId>
+        <clientId>15500000000</clientId>
+        <clientSecret>12345678a</clientSecret>
+        <url>http://172.16.1.111/aiaf/sgw/v1/security/login</url>
+    </userinfo>
+    <userinfo>
+        <AppId>endpoint</AppId>
+        <clientId>secutity</clientId>
+        <clientSecret>secutity</clientSecret>
+        <url>secutity</url>
+    </userinfo>
+    <userinfo>
+        <AppId>endpoint3</AppId>
+        <clientId>secutity</clientId>
+        <clientSecret>secutity</clientSecret>
+        <url>secutity</url>
+    </userinfo>
+</users>
