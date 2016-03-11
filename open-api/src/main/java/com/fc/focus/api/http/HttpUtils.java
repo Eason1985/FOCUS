@@ -229,36 +229,22 @@ public class HttpUtils {
 
     public static  String loginAuth(HttpClient httpClient,TestCaseExcel testCase) throws Exception {
 
-      /*  UserAuthFactory.UserAuth  userAuth = null;
-        if(userAuth==null||userAuth.getAppId()!=testCase.getHeader().get("AppId")){
-            userAuth = UserAuthFactory.getInstance(testCase.getHeader().get("AppId"));
-        }*/
-
         Map<String, String> userMap = UserAuthFactory.getInstance1(testCase.getHeader().get("AppId"));
 
         String url = userMap.get("url");
         Map<String, String> header = new HashMap<String, String>();
         header.put("AppId",userMap.get("AppId"));
+
+        if(userMap.containsKey("X-App-Id")){
+            header.put("X-App-Id",userMap.get("X-App-Id"));
+            header.put("X-Token",userMap.get("X-Token"));
+        }
+
+
         Map<String, String>  map2 = userMap;
         map2.remove("url");
         map2.remove("AppId");
         String params = JSON.toJSONString(map2);
-        System.out.println(url);
-        System.out.println(header);
-        System.out.println(params);
-
-
-
-
-
-
-        /*String url = PropertiesUtil.getProperties().getProperty("url");
-        Map map = new HashMap();
-        map.put("clientId", PropertiesUtil.getProperties().getProperty("clientId"));
-        map.put("clientSecret", PropertiesUtil.getProperties().getProperty("clientSecret"));
-        String params = JSON.toJSONString(map);
-        Map<String, String> header = new HashMap<String, String>();
-        header.put("AppId",PropertiesUtil.getProperties().getProperty("AppId"));*/
 
         PostMethod method = new PostMethod(url);
         method.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, CHARSET);
