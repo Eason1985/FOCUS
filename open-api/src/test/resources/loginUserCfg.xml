@@ -7,15 +7,21 @@
         <url>http://172.16.1.111/aiaf/sgw/v1/security/login</url>
     </userinfo>
     <userinfo>
-        <AppId>endpoint</AppId>
-        <clientId>secutity</clientId>
-        <clientSecret>secutity</clientSecret>
-        <url>secutity</url>
+        <AppId>12341234123412341234</AppId>
+        <mobile>122221</mobile>
+        <clientSecret>1234</clientSecret>
+        <smsCaptcha>1234</smsCaptcha>
+        <email>1234</email>
+        <loginId>1234</loginId>
+        <url>1234</url>
     </userinfo>
     <userinfo>
-        <AppId>endpoint3</AppId>
-        <clientId>secutity</clientId>
-        <clientSecret>secutity</clientSecret>
-        <url>secutity</url>
+        <AppId>123456677</AppId>
+        <mobile>1</mobile>
+        <clientSecret>2</clientSecret>
+        <smsCaptcha>3</smsCaptcha>
+        <email>4</email>
+        <loginId>5</loginId>
+        <url>6</url>
     </userinfo>
 </users>

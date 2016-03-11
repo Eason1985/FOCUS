@@ -229,18 +229,26 @@ public class HttpUtils {
 
     public static  String loginAuth(HttpClient httpClient,TestCaseExcel testCase) throws Exception {
 
-        UserAuthFactory.UserAuth  userAuth = null;
+      /*  UserAuthFactory.UserAuth  userAuth = null;
         if(userAuth==null||userAuth.getAppId()!=testCase.getHeader().get("AppId")){
             userAuth = UserAuthFactory.getInstance(testCase.getHeader().get("AppId"));
-        }
+        }*/
 
-        String url = userAuth.getUrl();
-        Map map = new HashMap();
-        map.put("clientId", userAuth.getClientId());
-        map.put("clientSecret",userAuth.getClientSecret());
-        String params = JSON.toJSONString(map);
+        Map<String, String> userMap = UserAuthFactory.getInstance1(testCase.getHeader().get("AppId"));
+
+        String url = userMap.get("url");
         Map<String, String> header = new HashMap<String, String>();
-        header.put("AppId",userAuth.getAppId());
+        header.put("AppId",userMap.get("AppId"));
+        Map<String, String>  map2 = userMap;
+        map2.remove("url");
+        map2.remove("AppId");
+        String params = JSON.toJSONString(map2);
+        System.out.println(url);
+        System.out.println(header);
+        System.out.println(params);
+
+
+
 
 
 

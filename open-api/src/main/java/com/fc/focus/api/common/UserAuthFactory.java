@@ -51,6 +51,28 @@ public class UserAuthFactory {
     }
 
 
+    private static Map<String,Map<String,String>> getEleMap(List<Element> userinfo) {
+
+        Map<String, Map<String,String>> userMap = new HashMap<String, Map<String,String>>();
+        Iterator<Element> iterator = userinfo.iterator();
+        while (iterator.hasNext()) {
+            Element ele = iterator.next();
+            List<Element> elelist = ele.elements();
+            Iterator<Element> it = elelist.iterator();
+            Map<String,String> map = new HashMap<String, String>();
+            while(it.hasNext()){
+                Element e = it.next();
+                String key = e.getName();
+                String value = e.getData().toString();
+
+                map.put(key,value);
+            }
+            userMap.put(map.get("AppId"),map);
+        }
+        return userMap;
+    }
+
+
     //getUser
     public static UserAuth getInstance(String appId){
         Element root = getDocument().getRootElement();
@@ -58,6 +80,14 @@ public class UserAuthFactory {
         Map<String, UserAuth> userList = getEleList(userinfo);
         UserAuth userAuth = userList.get(appId);
         return userAuth;
+    }
+
+    public static Map<String,String> getInstance1(String appId){
+        Element root = getDocument().getRootElement();
+        List<Element> userinfo = root.elements("userinfo");
+        Map<String, Map<String, String>> eleMap = getEleMap(userinfo);
+        Map map = eleMap.get(appId);
+        return map;
     }
 
     //用户类
