@@ -105,10 +105,10 @@ public class ExcelUtil {
                 }
 
                 String str = sheet.getRow(i).getCell(3).toString();
-                String[] headers = str.split("\\r\\n");
+                String[] headers = str.split("\\n");
                 HashMap<String, String> header = new HashMap<String, String>();
                 for (String s : headers) {
-                    header.put(s.substring(0, s.indexOf(":")), s.substring(str.indexOf(":") + 1, s.length()));
+                    header.put(s.substring(0, s.indexOf(":")), s.substring(s.indexOf(":") + 1, s.length()));
                 }
 
                 String method = sheet.getRow(i).getCell(4).toString();
