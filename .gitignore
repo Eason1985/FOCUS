@@ -48,3 +48,18 @@ test-output/*
 *.pfx
 .metadata/
 Servers/
+open-api/hs_err_pid260.log
+open-api/hs_err_pid5488.log
+open-api/hs_err_pid6004.log
+open-api/src/main/java/com/fc/focus/api/common/test.java
+open-api/src/main/java/com/fc/focus/api/common/test2.java
+open-api/src/test/java/com/fc/focus/api/common/packageScan/ScanTest.java
+open-api/src/test/java/com/fc/focus/api/endpoint/security/LoginTest3.java
+open-api/src/test/java/com/fc/focus/test/GroovyHello.groovy
+open-api/src/test/java/com/fc/focus/test/GroovyTest.java
+open-api/src/test/java/com/fc/focus/test/haha.groovy
+open-api/src/test/java/com/fc/focus/test/test.java
+open-api/src/test/java/com/fc/focus/test/test2.java
+open-api/src/test/resources/1026A000
+open-api/src/test/resources/testCase - 副本.xlsx
+open-api/src/test/resources/testCase-副本2.xlsx
